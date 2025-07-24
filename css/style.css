@@ -1,0 +1,92 @@
+body {
+  background: #0f172a;
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+.container {
+  background: #1e293b;
+  padding: 30px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 0 10px rgba(255,255,255,0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #cbd5e1;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+input[type="text"], input[type="date"] {
+  flex: 1;
+  padding: 8px;
+  background: #334155;
+  color: #fff;
+  border: 1px solid #475569;
+  border-radius: 5px;
+}
+
+#add-btn {
+  padding: 8px 12px;
+  background: #6366f1;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#filter-btn {
+  background: #475569;
+  color: #fff;
+}
+
+#delete-all-btn {
+  background: #818cf8;
+  color: #fff;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #0f172a;
+  border: 1px solid #334155;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #334155;
+}
+
+th {
+  color: #cbd5e1;
+}
+
+.empty {
+  text-align: center;
+  color: #64748b;
+}
