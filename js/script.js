@@ -4,6 +4,7 @@ const dateInput = document.getElementById('date-input');
 const tableBody = document.getElementById('todo-table');
 const filterBtn = document.getElementById('filter-btn');
 const deleteAllBtn = document.getElementById('delete-all-btn');
+const statusFilter = document.getElementById('status-filter');
 
 let todos = JSON.parse(localStorage.getItem("todos")) || [];
 let currentFilter = null;
@@ -15,9 +16,18 @@ function saveTodos() {
 function renderTable() {
   tableBody.innerHTML = "";
 
-  const filteredTodos = currentFilter
-    ? todos.filter(todo => todo.date === currentFilter)
-    : todos;
+  let filteredTodos = [...todos];
+
+  // Filter tanggal (jika aktif)
+  if (currentFilter) {
+    filteredTodos = filteredTodos.filter(todo => todo.date === currentFilter);
+  }
+
+  // Filter status (jika dipilih)
+  const selectedStatus = statusFilter.value;
+  if (selectedStatus) {
+    filteredTodos = filteredTodos.filter(todo => todo.status === selectedStatus);
+  }
 
   if (filteredTodos.length === 0) {
     tableBody.innerHTML = `<tr><td colspan="4" class="empty">No task found</td></tr>`;
@@ -25,17 +35,21 @@ function renderTable() {
   }
 
   filteredTodos.forEach((todo, i) => {
-    const index = todos.indexOf(todo); // ← ambil index dari array utama
+    const index = todos.indexOf(todo);
     const row = document.createElement('tr');
     row.innerHTML = `
       <td>${todo.task}</td>
       <td>${todo.date}</td>
       <td>${todo.status}</td>
-      <td><button onclick="deleteTask(${index})">🗑️</button></td>
+      <td>
+        <button onclick="markAsDone(${index})" ${todo.status === 'Sukses' ? 'disabled' : ''}>✔</button>
+        <button onclick="deleteTask(${index})">🗑️</button>
+      </td>
     `;
     tableBody.appendChild(row);
   });
 }
+
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -56,6 +70,13 @@ form.addEventListener("submit", (e) => {
 
   renderTable();
 });
+
+function markAsDone(index) {
+  todos[index].status = "Sukses";
+  saveTodos();
+  renderTable();
+}
+
 
 filterBtn.addEventListener("click", () => {
   const date = prompt("Masukkan tanggal untuk filter (yyyy-mm-dd):");
@@ -78,5 +99,6 @@ deleteAllBtn.addEventListener("click", () => {
     renderTable();
   }
 });
+statusFilter.addEventListener("change", renderTable);
 
 renderTable(); // panggil saat halaman dibuka

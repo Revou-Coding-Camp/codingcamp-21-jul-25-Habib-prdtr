@@ -69,6 +69,11 @@ button {
   color: #fff;
 }
 
+#status-filter {
+    background: #475569;
+    color: #fff;
+    border-radius: 5px;
+}
 table {
   width: 100%;
   border-collapse: collapse;
@@ -89,4 +94,9 @@ th {
 .empty {
   text-align: center;
   color: #64748b;
+}
+
+td:nth-child(3) {
+  font-weight: bold;
+  color: lightgreen;
 }
